@@ -1,0 +1,42 @@
+if not ATTACHMENT then
+	ATTACHMENT = {}
+end
+
+ATTACHMENT.Name = "Etched Wood Grip Finish"
+--ATTACHMENT.ID = "base" -- normally this is just your filename
+ATTACHMENT.Description = { TFA.AttachmentColors["+"], "Wooden finish with an elegant etched design" }
+ATTACHMENT.Icon = "entities/luxe_2.png" --Revers to label, please give it an icon though!  This should be the path to a png, like "entities/tfa_ammo_match.png"
+ATTACHMENT.ShortName = "LUXE"
+
+ATTACHMENT.WeaponTable = {
+	["Skin"] = 1,
+	["Luxe"] = true
+}
+
+function ATTACHMENT:Attach( wep )
+	wep.VElements["supp_2"].skin_old = wep.VElements["supp_2"].skin_old or wep.VElements["supp_2"].skin
+	wep.VElements["supp_2"].skin = self.WeaponTable.Skin
+	wep.WElements["supp_2"].skin_old = wep.VElements["supp_2"].skin_old or wep.VElements["supp_2"].skin
+	wep.WElements["supp_2"].skin = self.WeaponTable.Skin
+	wep.VElements["scope_large"].skin_old = wep.VElements["scope_large"].skin_old or wep.VElements["scope_large"].skin
+	wep.VElements["scope_large"].skin = self.WeaponTable.Skin
+	wep.WElements["scope_large"].skin_old = wep.VElements["scope_large"].skin_old or wep.VElements["scope_large"].skin
+	wep.WElements["scope_large"].skin = self.WeaponTable.Skin
+	wep.VElements["scope_max"].skin_old = wep.VElements["scope_max"].skin_old or wep.VElements["scope_max"].skin
+	wep.VElements["scope_max"].skin = self.WeaponTable.Skin
+	wep.WElements["scope_max"].skin_old = wep.VElements["scope_max"].skin_old or wep.VElements["scope_max"].skin
+	wep.WElements["scope_max"].skin = self.WeaponTable.Skin
+end
+
+function ATTACHMENT:Detach( wep )
+	wep.VElements["supp_2"].skin = wep.VElements["supp_2"].skin_old
+	wep.WElements["supp_2"].skin = wep.VElements["supp_2"].skin_old
+	wep.VElements["scope_large"].skin = wep.VElements["scope_large"].skin_old
+	wep.WElements["scope_large"].skin = wep.VElements["scope_large"].skin_old
+	wep.VElements["scope_max"].skin = wep.VElements["scope_max"].skin_old
+	wep.WElements["scope_max"].skin = wep.VElements["scope_max"].skin_old
+end
+
+if not TFA_ATTACHMENT_ISUPDATING then
+	TFAUpdateAttachments()
+end

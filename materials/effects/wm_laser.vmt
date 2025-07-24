@@ -1,0 +1,6 @@
+"UnlitGeneric"
+{
+	"$basetexture" "effects/wm_laser"
+	"$bumpmap" "models/krazy/gtav/camos/camo_b"
+	"$translucent" 1
+}

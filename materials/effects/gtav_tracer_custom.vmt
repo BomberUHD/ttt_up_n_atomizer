@@ -1,0 +1,11 @@
+"Unlitgeneric"
+{
+	$basetexture "effects/gtav_tracer_custom"
+	"$additive" 1
+	"$translucent" 1
+	"$alpha" 1
+	"$vertexcolor" 1
+	"$vertexalpha" 1
+	
+}
+
