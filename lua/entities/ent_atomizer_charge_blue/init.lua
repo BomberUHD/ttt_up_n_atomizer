@@ -27,20 +27,14 @@ function ENT:Initialize()
     -- Get the initial angle set by the weapon and apply an offset to correct the model.
     -- This makes the model point forward during flight.
     local currentAng = self:GetAngles()
-    currentAng.y = currentAng.y + 90 -- Add 90 degrees to the Yaw (left/right axis)
+    currentAng:RotateAroundAxis(currentAng:Up(), 90) -- Add 90 degrees relative to the projectile's Up axis
     self:SetAngles(currentAng)
 
     self.Entity:PhysicsInit(SOLID_VPHYSICS)
     self.Entity:SetMoveType(MOVETYPE_VPHYSICS)   
     self.Entity:SetSolid(SOLID_VPHYSICS)
     
-    -- This makes it not collide with the player who fired it for a short time.
-    self.Entity:SetCollisionGroup(COLLISION_GROUP_PASSABLE_DOOR)
-    timer.Simple(0.2, function() 
-        if IsValid(self) then
-            self.Entity:SetCollisionGroup(COLLISION_GROUP_NONE) 
-        end
-    end)
+
 
     local phys = self.Entity:GetPhysicsObject()
     if phys:IsValid() then

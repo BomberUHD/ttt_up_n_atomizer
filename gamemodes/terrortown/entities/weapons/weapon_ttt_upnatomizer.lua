@@ -56,8 +56,8 @@ SWEP.Primary.Delay = 2.0
 SWEP.Primary.Recoil = 4
 SWEP.Primary.Cone = 0.025
 SWEP.Primary.Damage = 80
-SWEP.Primary.ClipSize = 10
-SWEP.Primary.DefaultClip = 10
+SWEP.Primary.ClipSize = 1
+SWEP.Primary.DefaultClip = 1
 SWEP.Primary.Automatic = false
 SWEP.Primary.Ammo = "UpnAtomizerCharge"
 SWEP.Primary.Sound = Sound("upnatomizer.fire")
@@ -70,7 +70,7 @@ SWEP.ViewModelFOV = 56
 SWEP.IronSightsPos = Vector(-5.665, -2.789, 1.549)
 SWEP.IronSightsAng = Vector(-1.826, -0.098, -0.158)
 
-SWEP.MaxCharges = 10
+SWEP.MaxCharges = 1
 SWEP.Charged = true
 
 function SWEP:Initialize()
@@ -96,20 +96,8 @@ function SWEP:PrimaryAttack()
     self:SetNextPrimaryFire(CurTime() + self.Primary.Delay)
     self:EmitSound("upnatomizer.fire")
 
-    self:SetClip1(self:Clip1() - 1)
-
     if SERVER then
         self:FireShot()
-        self.Charged = false
-        timer.Simple(2, function()
-            if IsValid(self) then
-                self.Charged = true
-                self:SetClip1(self.MaxCharges)
-                if IsValid(self:GetOwner()) then
-                    self:GetOwner():EmitSound("upnatomizer.charge")
-                end
-            end
-        end)
     end
 end
 
