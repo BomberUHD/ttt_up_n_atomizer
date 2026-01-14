@@ -103,7 +103,7 @@ function ENT:Detonate()
     -- *** GTA V KNOCKBACK & CUSTOM DAMAGE EFFECT ***
     -- Find all players and NPCs in a radius and launch them.
     local radius = 250
-    local force = 750
+    local force = 1000
     for _, ent in ipairs(ents.FindInSphere(pos, radius)) do
         if ent:IsPlayer() then
             -- Apply knockback to all players in the radius
